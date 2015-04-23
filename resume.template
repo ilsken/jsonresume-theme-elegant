@@ -7,6 +7,7 @@
     <title>{{#resume.basics}}{{name}}{{/resume.basics}}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://s3.amazonaws.com/tarqresume/style.css">
     <!-- link rel="shortcut icon" href="favicon.ico" / -->
     <style>
       {{{css}}}
@@ -82,7 +83,7 @@
               <li>
                 <a href="#volunteer-work">
                   <i class="fa fa-child"></i>
-                  Volunteer Work
+                  Projects / Open Source
                 </a>
               </li>
             {{/if}}
@@ -224,6 +225,14 @@
                   <a class="fa fa-twitter fa-2x social-link link-twitter"
                        href="{{twitter_url}}" target="_blank"></a>
                 {{/if}}
+                {{#if hackerone_url}}
+                  <a class="icon-hackerone fa fa-2x social-link link-hackerone"
+                       href="{{hackerone_url}}" target="_blank"></a>
+                {{/if}}
+                {{#if keybase_url}}
+                  <a class="fa fa-user-secret fa-2x social-link link-keybase"
+                       href="{{keybase_url}}" target="_blank"></a>
+                {{/if}}
                 {{#if facebook_url}}
                   <a class="fa fa-facebook-square fa-2x social-link link-facebook" href="{{facebook_url}}" target="_blank"></a>
                 {{/if}}
@@ -312,11 +321,15 @@
                       <li class="card card-nested clearfix">
                         <div class="content">
                           <p class="clear-margin relative">
+                            {{#if startDate}}
                             {{#unless endDate}}
                               <i class="fa fa-circle current-event"
                                  rel="tooltip" title="Currently Working" data-placement="left"></i>
                             {{/unless}}
+                            {{/if}}
+                            {{#if position}}
                             <strong>{{position}}</strong>,&nbsp;
+                            {{/if}}
                             {{#if website}}
                               <a href="{{website}}"  target="_blank">{{company}}</a>
                             {{else}}
@@ -324,6 +337,7 @@
                             {{/if}}
                           </p>
                           <p class="text-muted">
+                            {{#if startDate}}
                             <small>
                               <span class="space-right">
                                 {{startDate}} -
@@ -336,11 +350,12 @@
 
                               {{#if duration}}
                                 <span>
-                                  <i class="fa fa-clock-o icon-left"></i>
+                                  <i class="fa fa-clock-o"></i>
                                   {{duration}}
                                 </span>
                               {{/if}}
                             </small>
+                            {{/if}}
                           </p>
                           <p>{{summary}}</p>
                           {{#if highlights}}
@@ -485,11 +500,11 @@
                 <div class="detail" id="volunteer-work">
                   <div class="icon">
                     <i class="fa fa-lg fa-child"></i>
-                    <span class="mobile-title">Volunteer Work</span>
+                    <span class="mobile-title">Projects / Open Source</span>
                   </div>
                   <div class="info">
                     <h4 class="title text-uppercase">
-                      Volunteer Work
+                      Projects / Open Source
                     </h4>
 
                     <div class="content">
@@ -500,7 +515,7 @@
                               <p class="clear-margin relative">
                                 {{#unless endDate}}
                                   <i class="fa fa-circle current-event"
-                                     rel="tooltip" title="Currently Volunteering" data-placement="left"></i>
+                                     rel="tooltip" title="Active" data-placement="left"></i>
                                 {{/unless}}
 
                                 <strong>{{position}}</strong>,&nbsp;

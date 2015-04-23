@@ -49,6 +49,8 @@ function humanizeDuration ( moment_obj, did_leave_company ) {
 
 function getUrlFromUsername( site, username ) {
     var url_map = {
+        hackerone: 'hackerone.com',
+        keybase: 'keybase.io',
         github: 'github.com',
         twitter: 'twitter.com',
         soundcloud: 'soundcloud.com',
@@ -103,7 +105,7 @@ function render(resume) {
                         "codepen", "foursquare", "reddit", "spotify",
                         "dribble", "dribbble", "facebook", "angellist",
                         "bitbucket", "skype", "youtube", "tumblr", 
-                        "gratipay", "googleplus"],
+                        "gratipay", "googleplus", "hackerone", "keybase"],
         date_format = 'MMM, YYYY';
 
     if (!resume.basics.picture && hasEmail(resume)) {
@@ -148,12 +150,15 @@ function render(resume) {
             skill_info.level = _s.capitalize( skill_info.level.trim() );
             skill_info.display_progress_bar = _.contains( levels,
                                                           skill_info.level );
+            if (skill_info.level == 'Master')
+              skill_info.level = 'Expert'
         }
     });
 
     resume.skills = _.sortBy( resume.skills, function( skill ) {
         var level = skill.level && skill.level.toLowerCase(),
             sort_map = {
+                expert: 1,
                 master: 1,
                 advanced: 2,
                 intermediate: 3,
